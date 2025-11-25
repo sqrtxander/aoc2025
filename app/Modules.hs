@@ -1,0 +1,18 @@
+module Modules (getModule) where
+
+import qualified Data.Map as Map
+import Solution (Solution, wrapSolution)
+
+import Day00.Part01
+import Day00.Part02
+
+moduleList :: Map.Map (Int, Int) (String -> Solution)
+moduleList =
+    Map.fromList
+        [ ((0, 1), wrapSolution . Day00.Part01.solution)
+        , ((0, 2), wrapSolution . Day00.Part02.solution)
+        ]
+
+getModule :: Maybe Int -> Maybe Int -> Maybe (String -> Solution)
+getModule (Just d) (Just p) = Map.lookup (d, p) moduleList
+getModule _ _ = Nothing

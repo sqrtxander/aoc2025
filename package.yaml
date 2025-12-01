@@ -16,6 +16,12 @@ dependencies:
 - containers
 - filepath
 - directory
+- parsec
+- time
+- array
+- vector
+- transformers
+- split
 
 ghc-options:
 - -Wall
@@ -32,7 +38,7 @@ library:
   source-dirs: src
 
 executables:
-  aoc2025-exe:
+  aoc2025:
     main:                Main.hs
     source-dirs:         app
     ghc-options:

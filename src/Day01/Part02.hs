@@ -5,12 +5,12 @@ parseLine ('L' : i) = -read i
 parseLine ('R' : i) = read i
 parseLine _ = error "Bad input."
 
-getZeros :: (Int, Int) -> Int -> (Int, Int)
-getZeros (acc, _) x =
-    let point = acc + x
-     in (point `mod` 100, abs $ point `div` 100)
-
 solution :: String -> Int
-solution s = sum . map snd $ scanl getZeros (50, 0) parsed
+solution s =
+    sum . map (abs . fst) $
+        scanl
+            (\(_, acc) x -> (acc + x) `divMod` 100)
+            (0, 50)
+            parsed
   where
     parsed = map parseLine $ lines s

@@ -14,10 +14,9 @@ countZeros (_, acc) x
          in (d, flipDial m)
     | otherwise = (acc + x) `divMod` 100
 
-solution :: String -> String
+solution :: String -> Int
 solution s =
-    show . sum . map (abs . fst) $
-        -- show $
+    sum . map (abs . fst) $
         scanl
             countZeros
             (0, 50)
